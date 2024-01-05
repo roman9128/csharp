@@ -1,23 +1,16 @@
-﻿int reverseNum = 0, reminder, num;
-        Console.Write("Enter Number to Reverse: ");
-        int.TryParse(Console.ReadLine(), out num);
-        bool isZero = false;
-        int cnt=0;
-        while (num > 0)
-        {
-            reminder = num % 10;
-            reverseNum = (reverseNum * 10) + reminder;
-            num = num / 10;
-            if (reverseNum == 0)
-                isZero = true;                
-            cnt++;
-        }
-        if (isZero)
-        {
-            Console.WriteLine(reverseNum.ToString().PadLeft(cnt, '0'));
-        }
-        else
-        {
-            Console.WriteLine(reverseNum);
-        }
-        Console.ReadKey();
+﻿//Напишите программу, которая на вход принимает натуральное число N, а на выходе показывает его цифры через запятую.
+Console.Write("Введите натуральное число, а я покажу его цифры: ");
+int n = int.Parse(Console.ReadLine()!);
+while (n > 9)
+    {
+    Console.Write(n % 10 + ", ");
+    n = n / 10;
+    }
+if (n >= 0 && n < 10)
+    {
+    Console.Write(n);
+    }
+else
+    {
+    Console.Write("Введённое число не является натуральным");
+    }
