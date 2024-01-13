@@ -1,47 +1,43 @@
-﻿//Напишите программу, которая на вход принимает натуральное число N, а на выходе показывает его цифры через запятую.
-Console.Write("Введите натуральное число, а я покажу его цифры: ");
-int n = int.Parse(Console.ReadLine()!);
-int nrev = 0;
-if (n < 0)
-    {
-    Console.Write("Введённое число не является натуральным");
-    }
-else if (n >= 0 && n < 10)
-    {
-    Console.Write(n);
-    }
-else if (n >= 10 && n % 10 == 0)
-    {
-    n++;
-    while (n > 0)
-    {
-    nrev = (nrev * 10) + (n % 10);
-    n = n / 10;
-    }
-    while (nrev >= 10)
-    {
-    Console.Write(nrev % 10 + ", ");
-    nrev = nrev / 10;
-    }
-    if (nrev >= 0 && nrev < 10)
-    {
-    Console.Write(nrev-1);
-    }
+﻿int Square (int value)
+{
+    int result = value * value;
+    return result;
 }
-else if (n > 10 && n % 10 != 0)
-    {
-    while (n > 0)
-    {
-    nrev = (nrev * 10) + (n % 10);
-    n = n / 10;
-    }
-    while (nrev >= 10)
-    {
-    Console.Write(nrev % 10 + ", ");
-    nrev = nrev / 10;
-    }
-    if (nrev >= 0 && nrev < 10)
-    {
-    Console.Write(nrev);
-    }
+
+int Multiply (int value1, int value2)
+{
+    int result = value1 * value2;
+    return result;
+}
+
+void ShowSquare (int value)
+{
+    int result = value * value;
+    Console.Write(result);
+}
+
+// заполнить массив случайными числами
+Random rnd = new Random();
+int size = 1000;
+int[] arr_int = new int [size];
+int i = 0;
+while(i < size)
+{
+    arr_int[i] = rnd.Next(1, 10); // второе число не включается, обрезается
+    i++;
+}
+
+string input = Console.Readline(); //переменная для хранения введённой строки = модуль для работы с консолью
+int value = Convert.ToInt32(input); // преобразование строки с числами в числа
+
+// заполнить массив с консоли
+int size = 10;
+int[] arr_int = new int [size];
+int i = 0;
+while(i < size)
+{
+    Console.WriteLine("Введите элемент массива:");
+    string input = Console.Readline();
+    arr_int[i] = Convert.ToInt32(input); 
+    i++;
 }
