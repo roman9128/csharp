@@ -1,29 +1,29 @@
 ﻿// Напишите программу, которая заполнит массив простыми числами и выдаст количество простых чисел
 
-// Определяем параметры массива
-Console.Write("Размер массива: ");
-int size = int.Parse(Console.ReadLine()!);
-while (size <= 0)
-{
-    Console.Write("Размер массива меньше либо равен нулю. Введите другое число: ");
-    size = int.Parse(Console.ReadLine()!);
-}
+Console.Clear(); // Очищаю консоль
+int[] numbers = PutRandomNumbersToArray(); // ввожу массив и запрашиваю данные для него из функции
 
-Console.Write("Начальное число диапазона: ");
-int from = int.Parse(Console.ReadLine()!);
-
-Console.Write("Конечное число диапазона: ");
-int to = int.Parse(Console.ReadLine()!);
-while (to <= from)
+// Функция по определению параметров массива и заполнению его случайными числами
+int[] PutRandomNumbersToArray()
 {
-    Console.Write("Конечное число диапазона меньше либо равно начальному. Введите другое число: ");
-    to = int.Parse(Console.ReadLine()!);
-}
-int[] numbers = PutRandomNumbersToArray(size, from, to); // передал в новый массив данные из функции
+    Console.Write("Размер массива: ");
+    int size = int.Parse(Console.ReadLine()!);
+    while (size <= 0)
+    {
+        Console.Write("Размер массива меньше либо равен нулю. Введите другое число: ");
+        size = int.Parse(Console.ReadLine()!);
+    }
 
-// Функция по заполнению массива случайными числами
-int[] PutRandomNumbersToArray(int size, int from, int to)
-{
+    Console.Write("Начальное число диапазона: ");
+    int from = int.Parse(Console.ReadLine()!);
+
+    Console.Write("Конечное число диапазона: ");
+    int to = int.Parse(Console.ReadLine()!);
+    while (to <= from)
+    {
+        Console.Write("Конечное число диапазона меньше либо равно начальному. Введите другое число: ");
+        to = int.Parse(Console.ReadLine()!);
+    }
     int[] array = new int[size];
     for (int i = 0; i < size; i++)
     {
@@ -46,21 +46,27 @@ void PrintArray(int[] arr)
 static bool IsOK(int number)
 {
     if (number % 10 == 1 && number % 7 == 0)
-        {
-            return true;
-        }
+    {
+        return true;
+    }
     return false;
 }
 
-int count_of_OK_numbers = 0;
-foreach (int e in numbers)
+// Функция, подсчитывающая количество чисел в массиве, соответствующих заданным требованиям
+int CountNumbers(int[] arr)
 {
-    if (IsOK(e))
+    int count = 0;
+    foreach (int e in arr)
     {
-       count_of_OK_numbers++; 
+        if (IsOK(e))
+        {
+            count++;
+        }
     }
+    return count;
 }
 
+int count_of_OK_numbers = CountNumbers(numbers);
 PrintArray(numbers);
 Console.WriteLine();
 Console.Write("Количество подходящих чисел в массиве: " + count_of_OK_numbers);

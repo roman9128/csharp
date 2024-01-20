@@ -62,7 +62,7 @@ static bool IsSimple(int number)
     {
         return false;
     }
-    for (int i = 2; i < number; i++)
+    for (int i = 2; i*i < number; i++)
     {
         if (number % i == 0)
         {
@@ -72,15 +72,21 @@ static bool IsSimple(int number)
     return true;
 }
 
-int count_of_simple_numbers = 0;
-foreach (int e in numbers)
+// Функция, подсчитывающая количество чисел в массиве, соответствующих заданным требованиям
+int CountNumbers(int[] arr)
 {
-    if (IsSimple(e))
+    int count = 0;
+    foreach (int e in arr)
     {
-       count_of_simple_numbers++; 
+        if (IsSimple(e))
+        {
+            count++;
+        }
     }
+    return count;
 }
 
+int count_of_simple_numbers = CountNumbers(numbers);
 PrintArray(numbers);
 Console.WriteLine();
 PrintSimpleNumbers(numbers);

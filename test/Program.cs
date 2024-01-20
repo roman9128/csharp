@@ -41,3 +41,14 @@ while(i < size)
     arr_int[i] = Convert.ToInt32(input); 
     i++;
 }
+
+// Функция по заполнению массива случайными числами
+int[] PutRandomNumbersToArray(int size, int from, int to)
+{
+    int[] array = new int[size];
+    for (int i = 0; i < size; i++)
+    {
+        array[i] = new Random().Next(from, to + 1);
+    }
+    return array;
+}
