@@ -3,42 +3,39 @@
 //Тело класса будет написано студентом. Класс обязан иметь статический метод PrintResult()
 class UserInputToCompileForTest
 {
-    /// Вычисление сумм по строкам (на выходе массив с суммами строк)
-    public static int[] SumRows(int[,] array)
+    // Печать массива
+    public static void PrintArray(int[,] array)
     {
-      //Напишите свое решение здесь
-    int sum = 0;
-    int[] arr = new int[array.GetLength(0)];
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
+        for (int i = 0; i < array.GetLength(0); i++)
         {
-            sum = sum + array[i, j];
-        }
-        arr[i] = sum;
-        sum = 0;
-    }
-    return arr;
-    }
-    
-    // Получение индекса минимального элемента в одномерном массиве
-    public static int MinIndex(int[] array)
-    {
-       //Напишите свое решение здесь
-        int minindex = 0;
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] < array[minindex])
+            for (int j = 0; j < array.GetLength(1); j++)
             {
-                minindex = i;
+                Console.Write($"{array[i, j]}\t");
             }
+            Console.WriteLine();
         }
-        return minindex;        
     }
+
+// Обмен первой с последней строкой
+    public static int[,] SwapFirstLastRows(int[,] array)
+    {
+        for (int i = 0; i < array.GetLength(1); i++) {
+            SwapItems(array, i);
+        }
+        return array;
+    }
+
+// Обмен элементами массива
+    public static void SwapItems(int[,] array, int i)
+    {
+        int temp = array[0, i];
+        array[0, i] = array[array.GetLength(0) - 1, i];
+        array[array.GetLength(0) - 1, i] = temp;
+    }
+
     public static void PrintResult(int[,] numbers)
-    {   
-       //Напишите свое решение здесь
-       Console.WriteLine(MinIndex(SumRows(numbers)));
+    {
+        PrintArray(SwapFirstLastRows(numbers));
     }
 }
 
@@ -80,13 +77,12 @@ class Answer
         else
         {
             // Если аргументов на входе нет, используем примерный массив
-            
-            numbers = new int[,] {
-                {1, 2, 3},
-                {1, 1, 9},
-                {7, 8, 2},
-                {0, 0, 1}
-    };      
+            numbers = new int[,]
+            {
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12}
+            }; 
         }
         UserInputToCompileForTest.PrintResult(numbers);
     }
